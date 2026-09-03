@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polityka prywatności</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <main class="container">
+        <nav>
+            <a href="/">Zapytaj AI</a>
+            <a href="/analiza-strona">Analiza danych</a>        
+            {% if session.get("nazwa_uzytkownika") %}
+                <span>Zalogowany: {{ session.get("nazwa_uzytkownika") }}</span>
+                <a href="{{ url_for('wyloguj') }}">Wyloguj</a>
+            {% else %}
+                <a href="{{ url_for('logowanie') }}">Zaloguj</a>
+                <a href="{{ url_for('rejestracja') }}">Rejestracja</a>
+            {% endif %}
+
+            <a href="/polityka-prywatnosci">Polityka prywatności</a>
+        </nav>
+        <section>
+            <h1>Polityka prywatności</h1>
+            <p>
+                Niniejsza Polityka prywatności określa zasady przetwarzania danych
+                użytkowników korzystających z aplikacji [NAZWA APLIKACJI].
+            </p>
+
+            <h2>1. Administrator danych</h2>
+
+            <p>
+                Administratorem danych osobowych jest:
+            </p>
+
+            <p>
+                <strong>[NAZWA FIRMY / IMIĘ I NAZWISKO]</strong><br>
+                [ADRES]<br>
+                NIP: [NIP]<br>
+                E-mail: [ADRES E-MAIL]
+            </p>
+
+            <p>
+                W sprawach dotyczących przetwarzania danych osobowych można
+                skontaktować się z Administratorem pod wskazanym adresem e-mail.
+            </p>
+
+            <h2>2. Jakie dane są zbierane?</h2>
+
+            <p>
+                W zależności od sposobu korzystania z aplikacji możemy przetwarzać
+                następujące dane:
+            </p>
+
+            <ul>
+                <li>
+                    nazwę użytkownika podaną podczas rejestracji,
+                </li>
+                <li>
+                    hasło użytkownika w postaci zabezpieczonego kryptograficznie
+                    hasha,
+                </li>
+                <li>
+                    informacje związane z sesją zalogowanego użytkownika,
+                </li>
+                <li>
+                    treść pytań przesyłanych do asystenta AI,
+                </li>
+                <li>
+                    dane znajdujące się w przesyłanych plikach CSV,
+                </li>
+                <li>
+                    informacje techniczne niezbędne do prawidłowego działania
+                    aplikacji.
+                </li>
+            </ul>
+
+            <h2>3. Rejestracja i konto użytkownika</h2>
+
+            <p>
+                W celu utworzenia konta użytkownik podaje nazwę użytkownika oraz
+                hasło.
+            </p>
+
+            <p>
+                Hasła nie są przechowywane w aplikacji w postaci jawnej. Są one
+                przekształcane przy użyciu mechanizmu bcrypt do postaci
+                kryptograficznego hasha, który jest przechowywany w pliku
+                użytkowników.
+            </p>
+
+            <p>
+                Dane konta są wykorzystywane w celu umożliwienia użytkownikowi
+                logowania oraz korzystania z funkcji aplikacji przeznaczonych
+                dla zalogowanych użytkowników.
+            </p>
+
+            <h2>4. Pytania wysyłane do asystenta AI</h2>
+
+            <p>
+                Aplikacja umożliwia zalogowanym użytkownikom przesyłanie pytań
+                do asystenta AI.
+            </p>
+
+            <p>
+                Treść pytania jest przekazywana do usługi Claude firmy Anthropic
+                w celu wygenerowania odpowiedzi.
+            </p>
+
+            <p>
+                Użytkownik powinien przed wysłaniem pytania upewnić się, że nie
+                zawiera ono danych osobowych lub informacji poufnych, których
+                przekazanie do zewnętrznego dostawcy nie jest dozwolone.
+            </p>
+
+            <h2>5. Analiza plików CSV</h2>
+
+            <p>
+                Aplikacja umożliwia zalogowanym użytkownikom przesyłanie plików
+                CSV w celu przeprowadzenia automatycznej analizy danych.
+            </p>
+
+            <p>
+                Aplikacja odczytuje zawartość przesłanego pliku i wykorzystuje
+                jej fragment do przygotowania zapytania kierowanego do usługi
+                Claude.
+            </p>
+
+            <p>
+                Użytkownik jest odpowiedzialny za zapewnienie, że posiada
+                odpowiednie prawa i podstawę prawną do przetwarzania oraz
+                przekazywania danych znajdujących się w przesyłanym pliku.
+            </p>
+
+            <p>
+                Nie należy przesyłać plików zawierających dane osobowe,
+                informacje poufne lub inne dane chronione, jeżeli użytkownik
+                nie posiada odpowiednich uprawnień do ich przekazania.
+            </p>
+
+            <h2>6. Wykorzystywanie danych przez usługę Claude</h2>
+
+            <p>
+                Do generowania odpowiedzi oraz analiz wykorzystywana jest usługa
+                Claude dostarczana przez firmę Anthropic.
+            </p>
+
+            <p>
+                Oznacza to, że treść pytań oraz dane przekazywane do analizy
+                mogą być przesyłane do tego dostawcy w celu wykonania żądanej
+                operacji.
+            </p>
+
+            <p>
+                Szczegółowe informacje dotyczące zasad przetwarzania danych przez
+                Anthropic znajdują się w dokumentacji i polityce prywatności tego
+                dostawcy.
+            </p>
+
+            <h2>7. Pliki cookies i sesja</h2>
+
+            <p>
+                Aplikacja wykorzystuje mechanizm sesji Flask do utrzymywania
+                informacji o zalogowaniu użytkownika.
+            </p>
+
+            <p>
+                Informacja o zalogowaniu jest przechowywana w sesji przeglądarki.
+                Dzięki temu użytkownik nie musi logować się ponownie przy każdym
+                przejściu pomiędzy stronami aplikacji.
+            </p>
+
+            <p>
+                Użytkownik może zarządzać plikami cookies za pomocą ustawień
+                swojej przeglądarki internetowej. Wyłączenie cookies może jednak
+                uniemożliwić prawidłowe korzystanie z funkcji wymagających
+                zalogowania.
+            </p>
+
+            <h2>8. Cel przetwarzania danych</h2>
+
+            <p>
+                Dane są przetwarzane w szczególności w celu:
+            </p>
+
+            <ul>
+                <li>
+                    utworzenia i obsługi konta użytkownika,
+                </li>
+                <li>
+                    uwierzytelniania użytkownika,
+                </li>
+                <li>
+                    zapewnienia bezpieczeństwa aplikacji,
+                </li>
+                <li>
+                    obsługi zapytań kierowanych do asystenta AI,
+                </li>
+                <li>
+                    przeprowadzania analizy przesłanych plików,
+                </li>
+                <li>
+                    generowania raportów i odpowiedzi,
+                </li>
+                <li>
+                    zapewnienia prawidłowego działania aplikacji.
+                </li>
+            </ul>
+
+            <h2>9. Podstawa prawna przetwarzania</h2>
+
+            <p>
+                Dane osobowe są przetwarzane zgodnie z obowiązującymi przepisami
+                o ochronie danych osobowych, w szczególności z Rozporządzeniem
+                Parlamentu Europejskiego i Rady (UE) 2016/679 (RODO).
+            </p>
+
+            <p>
+                W zależności od rodzaju przetwarzania podstawą prawną może być
+                w szczególności wykonanie umowy lub podjęcie działań na żądanie
+                użytkownika przed jej zawarciem, wypełnienie obowiązku prawnego
+                oraz prawnie uzasadniony interes Administratora, np. związany
+                z bezpieczeństwem aplikacji.
+            </p>
+
+            <h2>10. Okres przechowywania danych</h2>
+
+            <p>
+                Dane związane z kontem użytkownika są przechowywane przez okres
+                istnienia konta, chyba że obowiązujące przepisy wymagają ich
+                dalszego przechowywania.
+            </p>
+
+            <p>
+                Dane przekazywane w ramach zapytań oraz pliki przesyłane do
+                analizy są przetwarzane przez czas niezbędny do wykonania
+                żądanej operacji oraz zgodnie z zasadami przechowywania danych
+                przyjętymi przez Administratora.
+            </p>
+
+            <p>
+                Po upływie odpowiedniego okresu dane mogą zostać usunięte lub
+                zanonimizowane, z zastrzeżeniem danych, których dalsze
+                przechowywanie wynika z obowiązujących przepisów prawa.
+            </p>
+
+            <h2>11. Prawa użytkownika</h2>
+
+            <p>
+                W zakresie przewidzianym przepisami RODO użytkownikowi przysługuje
+                prawo do:
+            </p>
+
+            <ul>
+                <li>dostępu do swoich danych,</li>
+                <li>sprostowania danych,</li>
+                <li>usunięcia danych,</li>
+                <li>ograniczenia przetwarzania danych,</li>
+                <li>przenoszenia danych,</li>
+                <li>wniesienia sprzeciwu wobec przetwarzania danych,</li>
+                <li>
+                    wniesienia skargi do właściwego organu nadzorczego,
+                    jeżeli użytkownik uzna, że dane są przetwarzane niezgodnie
+                    z przepisami.
+                </li>
+            </ul>
+
+            <h2>12. Bezpieczeństwo danych</h2>
+
+            <p>
+                Administrator stosuje odpowiednie środki techniczne i organizacyjne
+                mające na celu ochronę danych przed nieuprawnionym dostępem,
+                utratą, zniszczeniem lub nieuprawnioną zmianą.
+            </p>
+
+            <p>
+                Hasła użytkowników są przechowywane wyłącznie w postaci hashy
+                utworzonych przy użyciu bcrypt.
+            </p>
+
+            <h2>13. Dane podawane dobrowolnie</h2>
+
+            <p>
+                Podanie danych podczas rejestracji jest dobrowolne, jednak jest
+                niezbędne do utworzenia konta i korzystania z funkcji aplikacji
+                wymagających zalogowania.
+            </p>
+
+            <p>
+                Podanie danych w pytaniach lub przesyłanych plikach jest dobrowolne.
+                Użytkownik sam decyduje, jakie informacje przekazuje aplikacji.
+            </p>
+
+            <h2>14. Zmiany Polityki prywatności</h2>
+
+            <p>
+                Polityka prywatności może być aktualizowana w przypadku zmian
+                funkcjonalności aplikacji, sposobu przetwarzania danych lub
+                obowiązujących przepisów prawa.
+            </p>
+
+            <p>
+                Aktualna wersja Polityki prywatności jest dostępna na stronie
+                aplikacji.
+            </p>
+
+            <h2>15. Kontakt</h2>
+
+            <p>
+                W sprawach związanych z ochroną danych osobowych można skontaktować
+                się z Administratorem:
+            </p>
+
+            <p>
+                <strong>E-mail:</strong> [ADRES E-MAIL]
+            </p>
+
+            <p>
+                <strong>Data aktualizacji:</strong> [DATA]
+            </p>
+        </section>
+    </main>
+</body>
+</html>
