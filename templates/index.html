@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zapytaj AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <main class="container">
+        <nav>
+            <a href="/">Zapytaj AI</a>
+            <a href="/analiza-strona">Analiza danych</a>        
+            {% if session.get("nazwa_uzytkownika") %}
+                <span>Zalogowany: {{ session.get("nazwa_uzytkownika") }}</span>
+                <a href="{{ url_for('wyloguj') }}">Wyloguj</a>
+            {% else %}
+                <a href="{{ url_for('logowanie') }}">Zaloguj</a>
+                <a href="{{ url_for('rejestracja') }}">Rejestracja</a>
+            {% endif %}
+            <a href="/polityka-prywatnosci">Polityka prywatności</a>
+        </nav>
+        <form action="/zapytaj" method="POST">
+            <label>Jaki chcesz prompt do chat AI<small> (jeżeli nie ma to jest interpretowany jako brak ustawionego promptu)</small></label>
+            <select name="styl" id="styl">
+                <option value="0">Zwykły/podstawowy</option>
+                <option value="1">krótko</option>
+                <option value="2">długo</option>
+                <option value="3">ekspert</option>
+                <option value="4">nauczyciel</option>
+            </select>
+            <label for="text">Odpisz:</label>
+            <textarea id="text" name="text" placeholder="Napisz coś ..." rows="5" required></textarea>
+            <button type="submit">Wyślij </button>
+            <button id="styl" name="styl" value="" type="submit"> Pomiń</button>
+        </form><br>
+        <h1>Zapytaj AI</h1>
+        <form action="/zapytaj" method="POST">
+            <textarea
+                name="pytanie"
+                id="pytanie"
+                rows="4"
+                placeholder="Wpisz swoje pytanie..."
+            ></textarea>
+            <button type="submit">Wyślij</button>
+        </form>
+        <div class="answer-box">{% if odpowiedz %} <p>{{ odpowiedz }}</p> {% else %} <p>Tutaj pojawi się odpowiedź AI.</p> {% endif %}
+        </div>
+    </main>
+</body>
+</html>
